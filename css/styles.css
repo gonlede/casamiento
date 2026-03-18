@@ -296,32 +296,32 @@ h1.names:has(+ .divider),
    ========================================= */
 @media (max-width: 767px) {
     .container {
-        padding: 25px 20px;
+        padding: 20px 20px;
     }
 
     .section.hero {
         min-height: auto;
-        margin-top: -25px;
-        padding-top: 25px;
+        margin-top: -20px;
+        padding-top: 20px;
     }
 
     .top-icon {
-        width: 70px;
-        margin: 0 auto 6px;
+        width: 58px;
+        margin: 0 auto 4px;
     }
 
     h1.names {
         font-size: 1.65rem;
-        margin: 10px 0 6px;
+        margin: 8px 0 4px;
     }
 
     .and {
-        margin: 8px 0 4px;
+        margin: 6px 0 3px;
     }
 
     .text-caps {
         font-size: 0.82rem;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
     }
 
     .main-date {
@@ -331,12 +331,12 @@ h1.names:has(+ .divider),
     }
 
     .divider {
-        margin: 0 auto 16px;
+        margin: 0 auto 12px;
     }
 
     h1.names:has(+ .divider),
     .text-caps:has(+ .divider) {
-        margin-bottom: 16px;
+        margin-bottom: 12px;
     }
 
     .btn-pill {
@@ -344,7 +344,7 @@ h1.names:has(+ .divider),
     }
 
     body {
-        line-height: 1.55;
+        line-height: 1.5;
     }
 }
 
