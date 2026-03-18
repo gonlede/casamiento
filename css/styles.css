@@ -1,0 +1,492 @@
+/* =========================================
+   VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
+   :root {
+    --color-text: #6b584a;
+    --color-bg: #faf7f0;
+    --color-btn: #e9e3db;
+    --font-main: 'Copperplate Gothic 32 BC', 'Copperplate Gothic Bold', 'Copperplate', 'Copperplate Gothic', serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-color: var(--color-bg);
+    font-family: var(--font-main);
+    color: var(--color-text);
+    text-align: center;
+    line-height: 1.45;
+    
+    /* CORRECCIÓN DE NÚMEROS: lining-nums para altura uniforme */
+    font-variant-numeric: lining-nums;
+    -moz-font-feature-settings: "lnum";
+    -webkit-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
+}
+
+/* CONTENEDOR PRINCIPAL: Controla el aire lateral en móviles */
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 45px 25px;
+}
+
+/* Hero: altura de viewport móvil */
+.section.hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -45px;
+    padding-top: 45px;
+}
+
+/* =========================================
+   TIPOGRAFÍA Y ELEMENTOS VISUALES
+   ========================================= */
+h1.names {
+    font-size: 2.1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 18px 0 12px;
+    text-transform: uppercase;
+}
+
+.and {
+    font-size: 1.4rem;
+    display: block;
+    margin: 14px 0 6px;
+}
+
+.text-caps {
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    border: none;
+}
+
+.main-date {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    border: none;
+}
+
+.divider {
+    margin: 28px auto;
+}
+
+.divider-line {
+    width: 80px;
+    height: 0;
+    border: none;
+    border-top: 2px solid var(--color-text);
+    opacity: 0.5;
+}
+
+.top-icon {
+    display: block;
+    width: 90px;
+    height: auto;
+    margin: 0 auto 10px;
+}
+
+/* =========================================
+   BOTONES CONSISTENTES (RSVP, UBICACIÓN, EXTRAS)
+   ========================================= */
+
+/* Clase base para todos los botones tipo píldora */
+.btn-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: visible;
+    background-color: var(--color-btn);
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin: 10px auto;
+    height: 45px;
+    padding: 0 35px;
+    min-width: 180px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pill:hover {
+    background-color: #dfd8cf;
+}
+
+/* Icono link-arrow: anclado en esquina inferior derecha, sobresale del botón */
+.btn-pill .btn-icon {
+    position: absolute;
+    bottom: -4px;
+    right: -6px;
+    width: 24px;
+    height: auto;
+    filter: drop-shadow(0 1px 2px rgba(107, 88, 74, 0.2));
+}
+
+/* Texto del botón */
+.btn-text {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-confirmar {
+    font-weight: 800;
+}
+
+/* Sección confirmar: RSVP (imagen), botón y subtítulo */
+.section.maps .rsvp-img {
+    display: block;
+    width: auto;
+    max-width: 130px;
+    height: auto;
+    margin: 0 auto 12px;
+}
+
+.section.maps .rsvp-subtext {
+    margin-top: 6px;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.section.maps .confirm-subtitle {
+    margin-top: 12px;
+    background-color: rgba(109, 91, 74, 0.08) !important;
+    border-color: rgba(109, 91, 74, 0.25) !important;
+    color: var(--color-text);
+}
+
+.section.maps .confirm-subtitle .bi {
+    color: var(--color-text);
+}
+
+.section.maps .confirm-subtitle p {
+    color: var(--color-text);
+    font-size: 0.85rem;
+    line-height: 1.65;
+}
+
+.section.maps .confirm-subtitle p.mb-2 {
+    margin-bottom: 0.75rem !important;
+}
+
+/* =========================================
+   GRILLA DE UBICACIONES (IGLESIA Y PRADO)
+   ========================================= */
+.locations-wrapper {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    background-color: rgba(109, 91, 74, 0.05);
+    padding: 30px 25px;
+}
+
+.locations-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.locations-grid {
+    display: flex;
+    flex-direction: column; /* Móvil: Uno debajo del otro */
+    gap: 35px;
+    margin-top: 28px;
+}
+
+.location-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-frame {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.location-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: bottom;
+}
+
+.label-mini {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 6px;
+}
+
+.label-place {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-size: 0.95rem;
+    font-weight: 400;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   SECCIÓN EXTRAS (HOSPEDAJE Y REGALOS)
+   ======================================== */
+.extras-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    margin-bottom: 35px;
+}
+
+.extra-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-frame-mini {
+    width: 120px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.icon-extra {
+    max-width: 100%;
+    max-height: 90px;
+    object-fit: contain;
+}
+
+/* Botón directamente debajo de la imagen */
+.extra-block .btn-pill {
+    margin-top: 0;
+}
+
+/* =========================================
+   MÓVIL: contenido comprimido hasta R.S.V.P. sin scroll
+   ========================================= */
+@media (max-width: 767px) {
+    .container {
+        padding: 25px 20px;
+    }
+
+    .section.hero {
+        min-height: auto;
+        margin-top: -25px;
+        padding-top: 25px;
+    }
+
+    .top-icon {
+        width: 70px;
+        margin: 0 auto 6px;
+    }
+
+    h1.names {
+        font-size: 1.65rem;
+        margin: 10px 0 6px;
+    }
+
+    .and {
+        margin: 8px 0 4px;
+    }
+
+    .text-caps {
+        font-size: 0.82rem;
+        margin-bottom: 4px;
+    }
+
+    .main-date {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+        white-space: nowrap;
+    }
+
+    .divider {
+        margin: 16px auto;
+    }
+
+    .btn-pill {
+        margin: 6px auto;
+    }
+
+    body {
+        line-height: 1.35;
+    }
+}
+
+/* =========================================
+   AJUSTES PARA DESKTOP (PC)
+   ========================================= */
+@media (min-width: 768px) {
+    .container {
+        max-width: 850px;
+        padding: 60px 50px;
+    }
+
+    /* Hero: en desktop no forzar altura completa */
+    .section.hero {
+        min-height: auto;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    h1.names {
+        font-size: 3.2rem;
+    }
+
+    .locations-grid {
+        flex-direction: row; /* Lado a lado en PC */
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .location-card {
+        flex: 1;
+        max-width: 400px;
+    }
+
+    .locations-inner {
+        max-width: 850px;
+    }
+
+    .img-frame {
+        height: 250px;
+    }
+
+    /* Extras: Hospedaje y Regalos lado a lado como Ceremonia/Fiesta */
+    .extras-grid {
+        flex-direction: row;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .extra-block {
+        flex: 1;
+        max-width: 280px;
+    }
+}
+
+.final-msg {
+    font-size: 2.2rem;
+    margin-top: 50px;
+}
+
+/* =========================================
+   MODAL HOSPEDAJES
+   ========================================= */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(107, 88, 74, 0.4);
+    cursor: pointer;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--color-bg);
+    color: var(--color-text);
+    max-width: 400px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--color-text);
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+}
+
+.modal-close:hover {
+    opacity: 1;
+}
+
+.modal-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-right: 30px;
+}
+
+.modal-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.modal-list li {
+    margin-bottom: 12px;
+}
+
+.modal-list a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.modal-list a:hover {
+    opacity: 0.8;
+}
+
+.modal-list span {
+    color: var(--color-text);
+    opacity: 0.8;
+}
