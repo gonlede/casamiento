@@ -11,7 +11,9 @@
 <body>
 
     <main class="container">
-        
+        <div class="page page-1">
+        <div class="first-screen">
+        <div class="intro-block">
         <section class="section hero">
             <img src="img/sagrada-familia.png" alt="Sagrada Familia" class="top-icon">
             <h1 class="names">
@@ -19,44 +21,49 @@
                 <span class="and">Y</span>
                 MARÍA VICTORIA<br>AQUERRETA
             </h1>
-            <div class="divider divider-line"></div>
-            <p class="text-caps">
+            <div class="divider divider-line divider--no-line"></div>
+            <p class="text-caps text-smaller">
                 Participamos nuestro casamiento y te invitamos a acompañarnos en la ceremonia religiosa que se celebrará con misa de esponsales.
             </p>
-            <div class="divider divider-line"></div>
         </section>
 
         <section class="section details">
-            <h2 class="main-date">SÁBADO 20 DE JUNIO DE 2026 A LAS 15.00H</h2>
-            <p class="text-caps">
-                Parroquia San Antonio de Padua,<br>
+
+            <h2 class="main-date">20 · 06 · 26</h2>
+            <p class="text-caps text-smaller">
+                <span class="time-sep">15.00H — </span>Parroquia San Antonio de Padua,<br>
                 Bartolomé Mitre 366<br>
                 San Antonio de Areco.
             </p>
             
             <div class="divider divider-line"></div>
             
-            <p class="text-caps">Después de la ceremonia te invitamos a celebrar en<br>Prado Español - Moreno 424</p>
+            <p class="text-caps text-smaller">Después de la ceremonia te invitamos a celebrar en<br>Prado Español - Moreno 424</p>
         </section>
+        </div>
+            <div class="divider divider-line divider--no-line"></div>
+            <a href="#confirmar" class="scroll-indicator" aria-label="Ver siguiente sección">
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </a>
+        </div>
+        </div>
 
-        <section id="confirmar" class="section maps">
-            <div class="divider divider-line"></div>
-            
+        <div class="page page-2" id="confirmar">
+        <section class="section maps">
+            <div class="maps-confirm-block">
             <a href="LINK_TU_FORMULARIO" target="_blank" class="btn-pill btn-confirmar">
                 <span class="btn-text">CONFIRMAR ASISTENCIA</span>
                 <img src="img/link-arrow.png" alt="flecha" class="btn-icon">
             </a>
-            <p class="text-caps rsvp-subtext fw-bold">Esperamos que puedas acompañarnos</p>
-            <div class="confirm-subtitle text-caps p-3 rounded-3 bg-light border-start border-3 border-secondary mx-auto text-center">
-                <div class="d-flex align-items-start gap-2 justify-content-center">
-                    <i class="bi bi-info-circle fs-5 flex-shrink-0"></i>
-                    <div class="text-center">
-                        <p class="mb-2 small lh-lg">Completar un formulario por cada persona que asista.</p>
-                        <p class="mb-0 fw-bold">
-                            <i class="bi bi-calendar3 me-1"></i>Antes del 1 de junio
-                        </p>
+            <div class="confirm-subtitle text-caps rounded-3 bg-light border-start border-3 border-secondary mx-auto text-center">
+                <div class="confirm-subtitle-inner d-flex align-items-center gap-2 justify-content-center">
+                    <i class="bi bi-info-circle flex-shrink-0 confirm-subtitle-icon"></i>
+                    <div class="confirm-subtitle-text">
+                        <span class="d-block">Completar un formulario por persona</span>
+                        <span class="d-block fw-bold">Antes del 1 de junio</span>
                     </div>
                 </div>
+            </div>
             </div>
 
             <div class="locations-wrapper">
@@ -77,7 +84,7 @@
                     </a>
                 </div>
 
-                <div class="location-card">
+                <div class="location-card" id="fiesta">
                     <div class="img-frame">
                         <img src="img/prado.png" alt="Fiesta" class="location-img">
                     </div>
@@ -91,8 +98,13 @@
                     </div>
                 </div>
             </div>
+            <a href="#extras" class="scroll-indicator" aria-label="Ver hospedajes y regalos">
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </a>
         </section>
+        </div>
 
+        <div class="page page-3" id="extras">
         <section class="section extras">
             <div class="divider divider-spacer"></div>
             <div class="extras-grid">
@@ -119,6 +131,7 @@
 
             <h1 class="final-msg">¡TE ESPERAMOS!</h1>
         </section>
+        </div>
 
     </main>
 
@@ -168,6 +181,44 @@
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && modal?.classList.contains('is-open')) closeModal();
+        });
+    })();
+
+    (function() {
+        const indicators = document.querySelectorAll('.scroll-indicator');
+        if (!indicators.length) return;
+
+        function updateVisibility(anchor, targetEl) {
+            if (!targetEl) return;
+            const rect = targetEl.getBoundingClientRect();
+            const vh = window.innerHeight;
+            const isFiesta = targetEl.id === 'fiesta';
+            var hide = false;
+            if (rect.bottom < 0) {
+                hide = true;
+            } else if (isFiesta) {
+                hide = rect.top < vh * 0.35;
+            } else {
+                hide = rect.top < vh && rect.bottom > 0;
+            }
+            anchor.classList.toggle('scroll-indicator--hidden', hide);
+        }
+
+        indicators.forEach(function(anchor) {
+            const href = anchor.getAttribute('href');
+            if (!href || !href.startsWith('#')) return;
+            const targetId = href.slice(1);
+            const target = document.getElementById(targetId);
+            if (!target) return;
+
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    updateVisibility(anchor, entry.target);
+                });
+            }, { threshold: [0, 0.01, 1], rootMargin: '0px' });
+
+            observer.observe(target);
+            updateVisibility(anchor, target);
         });
     })();
     </script>

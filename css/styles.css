@@ -6,6 +6,7 @@
     --color-bg: #faf7f0;
     --color-btn: #e9e3db;
     --font-main: 'Copperplate Gothic 32 BC', 'Copperplate Gothic Bold', 'Copperplate', 'Copperplate Gothic', serif;
+    --space: 16px;
 }
 
 * {
@@ -19,12 +20,17 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
+/* Scroll snap: al hacer scroll, encaja en cada "página" */
+body {
+    scroll-snap-type: y proximity;
+}
+
 body {
     background-color: var(--color-bg);
     font-family: var(--font-main);
     color: var(--color-text);
     text-align: center;
-    line-height: 1.7;
+    line-height: 2.47;
     
     /* CORRECCIÓN DE NÚMEROS: lining-nums para altura uniforme */
     font-variant-numeric: lining-nums;
@@ -33,12 +39,68 @@ body {
     font-feature-settings: "lnum";
 }
 
-/* CONTENEDOR PRINCIPAL: Controla el aire lateral en móviles */
+/* CONTENEDOR PRINCIPAL: Controla el aire lateral (15% margen a los lados) */
 .container {
-    width: 100%;
+    width: 70%;
     max-width: 600px;
     margin: 0 auto;
     padding: 45px 25px;
+}
+
+/* Páginas: cada una ocupa al menos el viewport, separación visual al hacer scroll */
+.page {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    scroll-snap-align: start;
+}
+.page-1 {
+    padding-bottom: 32px;
+    justify-content: center;
+}
+
+/* Última página: solo la altura del contenido, sin espacio vacío al final */
+.page-3 {
+    min-height: auto;
+}
+
+/* Flecha indicadora de scroll: junto a "Esperamos..." */
+.scroll-indicator {
+    margin-top: var(--space);
+    padding: 12px 0 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text);
+    opacity: 0.6;
+    text-decoration: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.scroll-indicator:hover {
+    opacity: 1;
+    color: var(--color-text);
+}
+.scroll-indicator:focus {
+    outline: 2px solid var(--color-text);
+    outline-offset: 4px;
+}
+.scroll-indicator .bi {
+    font-size: 1.23rem;
+    animation: scroll-bounce 2s ease-in-out infinite;
+}
+.scroll-indicator--hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+#confirmar {
+    scroll-margin-top: 0;
+}
+@keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
 }
 
 /* Hero: altura de viewport móvil */
@@ -57,44 +119,61 @@ body {
    TIPOGRAFÍA Y ELEMENTOS VISUALES
    ========================================= */
 h1.names {
-    font-size: 2.1rem;
+    font-size: 1.47rem;
     font-weight: 700;
-    line-height: 1.5;
+    line-height: 1.76;
     margin: 18px 0 12px;
     text-transform: uppercase;
 }
 
 .and {
-    font-size: 1.4rem;
+    font-size: 0.98rem;
     display: block;
-    margin: 14px 0 6px;
+    margin: 16px 0 8px;
 }
 
 .text-caps {
     text-transform: uppercase;
-    font-size: 0.95rem;
-    margin-bottom: 14px;
+    font-size: 0.67rem;
+    margin-bottom: var(--space);
+    line-height: 2.47;
     border: none;
+}
+
+.text-caps.text-smaller {
+    font-size: 0.55rem;
+}
+
+.time-sep {
+    font-weight: 700;
+}
+
+.main-weekday {
+    font-size: 0.95rem;
+    font-weight: 400;
+    font-style: italic;
+    text-transform: capitalize;
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
 }
 
 .main-date {
     font-weight: 700;
-    font-size: 1.25rem;
-    margin-bottom: 18px;
+    font-size: 1.05rem;
+    margin-bottom: var(--space);
+    line-height: 2.21;
     text-transform: uppercase;
     border: none;
 }
 
-/* Espacio simétrico: el elemento anterior aporta 28px abajo, el divider 28px abajo.
-   margin-top: 0 evita sumar espacio extra (el texto anterior ya tiene margin-bottom) */
+/* Espacio uniforme entre todas las líneas: igual arriba y abajo de cada divider */
 .divider {
-    margin: 0 auto 28px;
+    margin: 0 auto var(--space);
 }
 
-/* Elementos que preceden a un divider: margin-bottom 28px para equilibrar espacio arriba/abajo */
 h1.names:has(+ .divider),
 .text-caps:has(+ .divider) {
-    margin-bottom: 28px;
+    margin-bottom: var(--space);
 }
 
 .divider-line {
@@ -103,6 +182,11 @@ h1.names:has(+ .divider),
     border: none;
     border-top: 2px solid var(--color-text);
     opacity: 0.5;
+}
+
+.divider--no-line.divider-line {
+    border: none;
+    opacity: 0;
 }
 
 .top-icon {
@@ -128,11 +212,11 @@ h1.names:has(+ .divider),
     text-decoration: none;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.67rem;
     margin: 10px auto;
-    height: 45px;
-    padding: 0 35px;
-    min-width: 180px;
+    height: 32px;
+    padding: 0 24px;
+    min-width: 126px;
     transition: background-color 0.3s ease;
 }
 
@@ -140,12 +224,16 @@ h1.names:has(+ .divider),
     background-color: #dfd8cf;
 }
 
+.btn-confirmar {
+    font-weight: 800;
+}
+
 /* Icono link-arrow: anclado en esquina inferior derecha, sobresale del botón */
 .btn-pill .btn-icon {
     position: absolute;
-    bottom: -4px;
-    right: -6px;
-    width: 24px;
+    bottom: -3px;
+    right: -4px;
+    width: 17px;
     height: auto;
     filter: drop-shadow(0 1px 2px rgba(107, 88, 74, 0.2));
 }
@@ -156,36 +244,69 @@ h1.names:has(+ .divider),
     z-index: 1;
 }
 
-.btn-confirmar {
-    font-weight: 800;
+
+/* Bloque intro: en desktop ocupa el viewport para que el pliegue quede tras Prado Español */
+.intro-block {
+    display: flex;
+    flex-direction: column;
 }
 
-/* Sección confirmar: botón y subtítulo */
-.section.maps .rsvp-subtext {
-    margin-top: 6px;
-    margin-bottom: 0;
-    font-size: 0.9rem;
+/* Frase "Esperamos..." - ahora en first-screen, encima del botón */
+.rsvp-subtext {
+    margin-top: 0;
+    margin-bottom: var(--space);
+    font-size: 0.63rem;
 }
 
 .section.maps .confirm-subtitle {
-    margin-top: 12px;
+    margin-top: 8px;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: rgba(109, 91, 74, 0.08) !important;
     border-color: rgba(109, 91, 74, 0.25) !important;
     color: var(--color-text);
 }
 
-.section.maps .confirm-subtitle .bi {
+.section.maps .confirm-subtitle .bi,
+.section.maps .confirm-subtitle .confirm-subtitle-icon {
+    color: var(--color-text);
+    flex-shrink: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.section.maps .confirm-subtitle-inner {
+    align-items: center;
+}
+
+.section.maps .confirm-subtitle-text {
+    flex: 0 1 auto;
+    text-align: left;
+    line-height: 1.5;
+    font-size: 0.55rem;
     color: var(--color-text);
 }
 
-.section.maps .confirm-subtitle p {
-    color: var(--color-text);
-    font-size: 0.85rem;
-    line-height: 1.65;
+.section.maps .confirm-subtitle-text .d-block + .d-block {
+    margin-top: 0.15em;
 }
 
-.section.maps .confirm-subtitle p.mb-2 {
-    margin-bottom: 0.75rem !important;
+/* Bloque confirmar + info: mismo fondo que CÓMO LLEGAR */
+.maps-confirm-block {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    background-color: rgba(109, 91, 74, 0.05);
+    padding: 30px 25px 12px;
+}
+
+.maps-confirm-block .confirm-subtitle {
+    background-color: transparent !important;
 }
 
 /* =========================================
@@ -196,7 +317,11 @@ h1.names:has(+ .divider),
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
     background-color: rgba(109, 91, 74, 0.05);
-    padding: 30px 25px;
+    padding: 8px 25px 30px;
+}
+
+.locations-wrapper .divider-spacer {
+    margin: 0 0 4px;
 }
 
 .locations-inner {
@@ -235,20 +360,20 @@ h1.names:has(+ .divider),
 }
 
 .label-mini {
-    font-size: 0.8rem;
+    font-size: 0.56rem;
     font-weight: 700;
     margin-top: 6px;
 }
 
 .label-place {
-    font-size: 1rem;
+    font-size: 0.7rem;
     font-weight: 600;
     margin-bottom: 10px;
     text-transform: uppercase;
 }
 
 .section-title {
-    font-size: 0.95rem;
+    font-size: 0.67rem;
     font-weight: 400;
     margin-bottom: 18px;
     text-transform: uppercase;
@@ -292,9 +417,27 @@ h1.names:has(+ .divider),
 }
 
 /* =========================================
-   MÓVIL: contenido comprimido hasta R.S.V.P. sin scroll
+   MÓVIL: primera pantalla hasta Esperamos, botón en siguiente página
    ========================================= */
 @media (max-width: 767px) {
+    /* Primera pantalla ocupa el viewport: hero + details + Esperamos */
+    .first-screen {
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Divider entre Prado y Esperamos: mismo espacio que el resto (arriba = abajo) */
+    .intro-block:has(+ .divider) .details > .text-caps:last-child {
+        margin-bottom: 0;
+    }
+    .intro-block:has(+ .divider) {
+        margin-bottom: var(--space);
+    }
+    .intro-block + .divider {
+        margin: 0 auto var(--space);
+    }
+
     .container {
         padding: 20px 20px;
     }
@@ -311,7 +454,7 @@ h1.names:has(+ .divider),
     }
 
     h1.names {
-        font-size: 1.65rem;
+        font-size: 1.16rem;
         margin: 8px 0 4px;
     }
 
@@ -320,31 +463,98 @@ h1.names:has(+ .divider),
     }
 
     .text-caps {
-        font-size: 0.82rem;
-        margin-bottom: 10px;
+        font-size: 0.58rem;
+        margin-bottom: var(--space);
+        line-height: 2.41;
+    }
+    .text-caps.text-smaller {
+        font-size: 0.5rem;
+    }
+    .section.maps .confirm-subtitle-text {
+        font-size: 0.5rem;
     }
 
+    .main-weekday {
+        font-size: 0.72rem;
+        margin-bottom: 2px;
+    }
     .main-date {
-        font-size: 0.9rem;
-        margin-bottom: 6px;
+        font-size: 0.8rem;
+        margin-bottom: var(--space);
         white-space: nowrap;
     }
 
+    :root {
+        --space: 10px;
+    }
+
     .divider {
-        margin: 0 auto 12px;
+        margin: 0 auto var(--space);
     }
 
     h1.names:has(+ .divider),
     .text-caps:has(+ .divider) {
-        margin-bottom: 12px;
+        margin-bottom: var(--space);
     }
 
     .btn-pill {
         margin: 6px auto;
     }
 
+    /* Separación visual entre primera pantalla y botón */
+    .section.maps {
+        padding-top: 16px;
+    }
+
+    /* Mayor espaciado vertical entre líneas */
     body {
-        line-height: 1.5;
+        line-height: 2.47;
+    }
+
+    h1.names {
+        line-height: 1.69;
+    }
+
+    /* Flecha pegada a "Esperamos...", sin espacio extra abajo */
+    .first-screen .rsvp-subtext {
+        margin-bottom: 0;
+    }
+    .scroll-indicator {
+        margin-top: 4px;
+        padding: 2px 0 6px;
+    }
+    /* Ubicaciones: imágenes más bajas y textos/botón más cercanos */
+    .location-card .img-frame {
+        height: 130px;
+        margin-bottom: 4px;
+    }
+    .location-card .label-mini {
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+    .location-card .label-place {
+        margin-bottom: 4px;
+    }
+    .location-card .btn-pill {
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+
+    /* Ceremonia y fiesta: mínimo espacio entre ellos en móvil */
+    .locations-grid {
+        gap: 2px;
+        margin-top: 12px;
+    }
+    .scroll-indicator .bi {
+        font-size: 1.05rem;
+    }
+    .page-1 {
+        padding-bottom: 12px;
+    }
+
+    /* Reducir min-height del first-screen en móvil para que quepa Esperamos + flecha */
+    .first-screen {
+        min-height: auto;
     }
 }
 
@@ -352,9 +562,70 @@ h1.names:has(+ .divider),
    AJUSTES PARA DESKTOP (PC)
    ========================================= */
 @media (min-width: 768px) {
+    /* Menos espacio para que "Esperamos..." entre en primera vista */
+    :root {
+        --space: 12px;
+    }
+
+    /* Sin min-height: todo el primer bloque (hasta Esperamos) fluye y cabe en primera vista */
+    .intro-block {
+        min-height: auto;
+    }
+
+    /* Divider entre Prado y Esperamos: mismo espacio que el resto (arriba = abajo) */
+    .intro-block:has(+ .divider) .details > .text-caps:last-child {
+        margin-bottom: 0;
+    }
+    .intro-block:has(+ .divider) {
+        margin-bottom: var(--space);
+    }
+    .intro-block + .divider {
+        margin: 0 auto var(--space);
+    }
+
+    /* Intro desktop: espaciado compacto para que todo entre (incl. Esperamos) */
+    .intro-block .top-icon {
+        width: 58px;
+        margin-bottom: 4px;
+    }
+
+    .intro-block h1.names {
+        font-size: 1.72rem;
+        margin: 6px 0 3px;
+    }
+
+    .intro-block .and {
+        margin: 4px 0 2px;
+    }
+
+    .intro-block .text-caps {
+        margin-bottom: var(--space);
+    }
+
+    .intro-block .main-date {
+        margin-bottom: var(--space);
+    }
+
+    .intro-block .divider {
+        margin: 0 auto var(--space);
+    }
+
+    .intro-block h1.names:has(+ .divider),
+    .intro-block .text-caps:has(+ .divider) {
+        margin-bottom: var(--space);
+    }
+
     .container {
         max-width: 850px;
-        padding: 60px 50px;
+        padding: 25px 50px;
+    }
+
+    /* Line-height más compacto para que todo entre */
+    .intro-block {
+        line-height: 2.28;
+    }
+    .intro-block .text-caps {
+        line-height: 2.28;
     }
 
     /* Hero: en desktop no forzar altura completa */
@@ -365,13 +636,28 @@ h1.names:has(+ .divider),
     }
 
     h1.names {
-        font-size: 3.2rem;
+        font-size: 1.86rem;
     }
 
+    /* Mínimo espacio entre CÓMO LLEGAR y HOSPEDAJES/REGALOS: solo lo necesario para la flecha */
+    .page-2 {
+        min-height: auto;
+    }
+    .locations-wrapper {
+        padding: 8px 25px;
+    }
     .locations-grid {
+        margin-top: 10px;
         flex-direction: row; /* Lado a lado en PC */
         justify-content: center;
         gap: 30px;
+    }
+    .section.maps .scroll-indicator {
+        margin-top: 4px;
+        padding: 4px 0 6px;
+    }
+    .section.extras .divider-spacer {
+        margin: 0;
     }
 
     .location-card {
@@ -401,7 +687,7 @@ h1.names:has(+ .divider),
 }
 
 .final-msg {
-    font-size: 2.2rem;
+    font-size: 1.54rem;
     margin-top: 50px;
 }
 
@@ -452,7 +738,7 @@ h1.names:has(+ .divider),
     right: 15px;
     background: none;
     border: none;
-    font-size: 1.8rem;
+    font-size: 1.26rem;
     color: var(--color-text);
     cursor: pointer;
     line-height: 1;
@@ -464,7 +750,7 @@ h1.names:has(+ .divider),
 }
 
 .modal-title {
-    font-size: 1.2rem;
+    font-size: 0.84rem;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 20px;
