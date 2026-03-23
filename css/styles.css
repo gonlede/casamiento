@@ -501,9 +501,9 @@ h1.names:has(+ .divider),
         margin: 6px auto;
     }
 
-    /* Separación visual entre primera pantalla y botón */
+    /* Sin padding superior: el fondo oscuro empieza al tope al hacer scroll */
     .section.maps {
-        padding-top: 16px;
+        padding-top: 0;
     }
 
     /* Mayor espaciado vertical entre líneas */
