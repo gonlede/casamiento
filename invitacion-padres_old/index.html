@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="icon" type="image/png" href="../img/favicon.png">
     <title>Casamiento - Gon y Vicky</title>
     <meta property="og:title" content="Casamiento - Gon y Vicky">
@@ -12,8 +12,7 @@
     <meta name="twitter:image" content="https://gonlede.github.io/casamiento/img/og-invitacion.jpg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../css/styles.css?v=202603182203">
-    <link rel="stylesheet" href="../css/styles-spa.css?v=202603182203">
+    <link rel="stylesheet" href="../css/styles.css?v=202603182201">
     <script>
     (function() {
         var ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -26,32 +25,36 @@
     })();
     </script>
 </head>
-<body class="spa-invite">
-
-    <div class="spa-scroll-hints" id="spa-scroll-hints" role="presentation">
-        <button type="button" class="spa-scroll-hint spa-scroll-hint--left" aria-label="Bajar en la página">
-            <i class="bi bi-chevron-double-down" aria-hidden="true"></i>
-        </button>
-        <button type="button" class="spa-scroll-hint spa-scroll-hint--right" aria-label="Bajar en la página">
-            <i class="bi bi-chevron-double-down" aria-hidden="true"></i>
-        </button>
-    </div>
+<body>
 
     <main class="container">
         <div class="page page-1">
         <div class="first-screen">
         <div class="intro-block">
-        <section class="section hero">
+        <section class="section hero header-parents">
             <img src="../img/sagrada-familia.png" alt="Sagrada Familia" class="top-icon">
-            <h1 class="names">
-                GONZALO<br>LEDESMA<br>
-                <span class="and">Y</span>
-                MARÍA VICTORIA<br>AQUERRETA
-            </h1>
-            <div class="divider divider-line divider--no-line"></div>
-            <p class="text-caps text-smaller">
-                Participamos nuestro casamiento y te invitamos a acompañarnos en la ceremonia religiosa que se celebrará con misa de esponsales
-            </p>
+            <div class="parents-row">
+                <div class="parents-col parents-col--left">
+                    <div class="parents-block parents-block--father">
+                        <p class="parents-names">CARLOS MARÍA LEDESMA</p>
+                    </div>
+                    <div class="parents-block parents-block--mother">
+                        <p class="parents-names">MARÍA CONSTANZA<br>DEL MOLINO TORRES </p>
+                        <p class="parents-names">DE LEDESMA</p>
+                    </div>
+                </div>
+                <div class="parents-col parents-col--right">
+                    <div class="parents-block parents-block--father">
+                        <p class="parents-names">RAÚL AQUERRETA</p>
+                    </div>
+                    <div class="parents-block parents-block--mother">
+                        <p class="parents-names">MARÍA DE LAS MERCEDES<br>GUERRICO </p>
+                        <p class="parents-names">DE AQUERRETA</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-invitan text-caps text-smaller">Invitan, con mucha alegría<br>al casamiento de sus hijos</p>
+            <h1 class="names names-inline">GONZALO Y VICTORIA</h1>
         </section>
 
         <section class="section details">
@@ -62,23 +65,22 @@
                 Bartolomé Mitre 366<br>
                 San Antonio de Areco
             </p>
-
+            
             <div class="divider divider-line divider--balanced"></div>
-
-            <p class="text-caps text-smaller text-recepcion">Después de la ceremonia te invitamos a celebrar en Prado Español<br>Moreno 424</p>
+            
+            <p class="text-caps text-smaller text-recepcion">Después de la ceremonia los invitamos a celebrar en Prado Español<br>Moreno 424</p>
         </section>
         </div>
+            <a href="#confirmar" class="scroll-indicator" aria-label="Ver siguiente sección">
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </a>
         </div>
         </div>
 
         <div class="page page-2" id="confirmar">
         <div class="page-2-screen">
         <section class="section maps">
-            <div class="maps-confirm-block maps-confirm-block--spa">
-            <a href="https://forms.gle/mRhvMFod8BnB5Qyu6" target="_blank" rel="noopener" class="btn-pill btn-confirmar">
-                <span class="btn-text">CONFIRMAR ASISTENCIA</span>
-                <img src="../img/link-arrow.png" alt="flecha" class="btn-icon">
-            </a>
+            <div class="maps-confirm-block">
             <div class="confirm-subtitle text-caps text-center">
                 <div class="confirm-subtitle-inner d-flex align-items-center justify-content-center">
                     <div class="confirm-subtitle-text">
@@ -87,60 +89,66 @@
                     </div>
                 </div>
             </div>
+            <a href="https://forms.gle/mRhvMFod8BnB5Qyu6" target="_blank" class="btn-pill btn-confirmar">
+                <span class="btn-text">CONFIRMAR ASISTENCIA</span>
+                <img src="../img/link-arrow.png" alt="flecha" class="btn-icon">
+            </a>
             </div>
-            <div class="locations-wrapper locations-wrapper--spa">
+            <div class="locations-wrapper">
                 <div class="locations-inner">
                     <div class="divider divider-spacer"></div>
                     <div class="page-2-grid">
-                <div class="location-card location-card--spa">
+                <a href="https://maps.app.goo.gl/b9qZUsGvnFWjvFaM9" target="_blank" rel="noopener" class="location-card">
                     <div class="img-frame">
                         <img src="../img/iglesia.png" alt="Ceremonia" class="location-img">
                     </div>
                     <p class="label-mini">CEREMONIA</p>
                     <p class="label-place">SAN ANTONIO DE PADUA</p>
-                    <a href="https://maps.app.goo.gl/b9qZUsGvnFWjvFaM9" target="_blank" rel="noopener" class="btn-pill">
+                    <span class="btn-pill">
                         <span class="btn-text">VER UBICACIÓN</span>
                         <img src="../img/link-arrow.png" alt="" class="btn-icon" aria-hidden="true">
-                    </a>
-                </div>
+                    </span>
+                </a>
 
-                <div class="location-card location-card--spa" id="fiesta">
+                <a href="https://maps.app.goo.gl/tAFMuEjsrRdoQoL3A" target="_blank" rel="noopener" class="location-card" id="fiesta">
                     <div class="img-frame">
                         <img src="../img/prado.png" alt="Fiesta" class="location-img">
                     </div>
                     <p class="label-mini">FIESTA</p>
                     <p class="label-place">PRADO ESPAÑOL</p>
-                    <a href="https://maps.app.goo.gl/tAFMuEjsrRdoQoL3A" target="_blank" rel="noopener" class="btn-pill">
+                    <span class="btn-pill">
                         <span class="btn-text">VER UBICACIÓN</span>
                         <img src="../img/link-arrow.png" alt="" class="btn-icon" aria-hidden="true">
-                    </a>
-                </div>
+                    </span>
+                </a>
 
-                <div class="spa-extras-pair">
-                <div class="extra-block extra-block--spa">
+                <a href="#btn-hospedaje" class="scroll-indicator scroll-indicator--inline" aria-label="Ver hospedajes">
+                    <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </a>
+
+                <a href="#" class="extra-block" id="btn-hospedaje" role="button" aria-label="Ver hospedajes">
                     <div class="img-frame-mini">
                         <img src="../img/hospedaje.png" alt="" class="icon-extra" aria-hidden="true">
                     </div>
-                    <button type="button" class="btn-pill" id="btn-hospedaje" aria-label="Ver hospedajes">
+                    <span class="btn-pill">
                         <span class="btn-text">HOSPEDAJES</span>
                         <img src="../img/link-arrow.png" alt="" class="btn-icon" aria-hidden="true">
-                    </button>
-                </div>
+                    </span>
+                </a>
 
-                <div class="extra-block extra-block--spa extra-block--regalo">
+                <a href="https://aynic.com.ar/sitio/listas-regalos.aspx?i=1&idl=3896" target="_blank" rel="noopener" class="extra-block extra-block--regalo" aria-label="Ver lista de regalos">
                     <div class="img-frame-mini">
-                        <img src="../img/regalo.png?v=202603182118" alt="" class="icon-extra" aria-hidden="true">
+                        <img src="../img/regalo.png?v=202603182117" alt="" class="icon-extra" aria-hidden="true">
                     </div>
-                    <a href="https://aynic.com.ar/sitio/listas-regalos.aspx?i=1&idl=3896" target="_blank" rel="noopener" class="btn-pill" aria-label="Ver lista de regalos">
+                    <span class="btn-pill">
                         <span class="btn-text">REGALOS</span>
                         <img src="../img/link-arrow.png" alt="" class="btn-icon" aria-hidden="true">
-                    </a>
-                </div>
-                </div>
+                    </span>
+                </a>
                     </div>
                 </div>
             </div>
-            <h1 class="final-msg">¡TE ESPERAMOS!</h1>
+            <h1 class="final-msg">ESPERAMOS QUE PUEDAN ACOMPAÑARNOS</h1>
         </section>
         </div>
         </div>
@@ -186,7 +194,8 @@
             document.body.style.overflow = '';
         }
 
-        btn?.addEventListener('click', function() {
+        btn?.addEventListener('click', function(e) {
+            e.preventDefault();
             openModal();
         });
 
@@ -199,38 +208,60 @@
     })();
 
     (function() {
-        var wrap = document.querySelector('.spa-scroll-hints');
-        if (!wrap) return;
+        const indicators = document.querySelectorAll('.scroll-indicator');
+        if (!indicators.length) return;
 
-        var threshold = 72;
-
-        function updateBottomState() {
-            var docEl = document.documentElement;
-            var y = window.scrollY || docEl.scrollTop;
-            var maxY = Math.max(0, docEl.scrollHeight - window.innerHeight);
-            var atBottom = maxY <= threshold || (maxY - y) <= threshold;
-            document.body.classList.toggle('spa-at-bottom', atBottom);
-            wrap.setAttribute('aria-hidden', atBottom ? 'true' : 'false');
+        function updateVisibility(anchor, targetEl) {
+            if (!targetEl) return;
+            const rect = targetEl.getBoundingClientRect();
+            const vh = window.innerHeight;
+            const targetId = targetEl.id;
+            var hide = false;
+            if (rect.bottom < 0) {
+                hide = true;
+            } else if (targetId === 'fiesta') {
+                hide = rect.top < vh * 0.35;
+            } else if (targetId === 'btn-hospedaje') {
+                hide = rect.top < vh * 0.6;
+            } else {
+                hide = rect.top < vh && rect.bottom > 0;
+            }
+            anchor.classList.toggle('scroll-indicator--hidden', hide);
         }
 
-        function scrollDownStep() {
-            var docEl = document.documentElement;
-            var maxY = Math.max(0, docEl.scrollHeight - window.innerHeight);
-            var step = Math.max(120, window.innerHeight * 0.72);
-            var next = Math.min(maxY, (window.scrollY || docEl.scrollTop) + step);
-            window.scrollTo({ top: next, behavior: 'smooth' });
-        }
+        indicators.forEach(function(anchor) {
+            const href = anchor.getAttribute('href');
+            if (!href || !href.startsWith('#')) return;
+            const targetId = href.slice(1);
+            const target = document.getElementById(targetId);
+            if (!target) return;
 
-        wrap.querySelectorAll('.spa-scroll-hint').forEach(function(el) {
-            el.addEventListener('click', scrollDownStep);
+            anchor.addEventListener('click', function(e) {
+                if (targetId === 'confirmar' || targetId === 'btn-hospedaje') {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+
+            if (anchor.classList.contains('scroll-indicator--inline')) {
+                function checkInlineArrow() {
+                    var rect = target.getBoundingClientRect();
+                    var vh = window.innerHeight;
+                    anchor.classList.toggle('scroll-indicator--hidden', rect.top < vh * 0.6);
+                }
+                window.addEventListener('scroll', checkInlineArrow, { passive: true });
+                window.addEventListener('resize', checkInlineArrow);
+                checkInlineArrow();
+            } else {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        updateVisibility(anchor, entry.target);
+                    });
+                }, { threshold: [0, 0.01, 1], rootMargin: '0px' });
+                observer.observe(target);
+                updateVisibility(anchor, target);
+            }
         });
-
-        window.addEventListener('scroll', updateBottomState, { passive: true });
-        window.addEventListener('resize', updateBottomState);
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(updateBottomState);
-        }
-        updateBottomState();
     })();
     </script>
 

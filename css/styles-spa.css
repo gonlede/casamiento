@@ -1,0 +1,372 @@
+/* Invitación SPA: una sola columna, fondo uniforme, hints laterales */
+
+body.spa-invite {
+    scroll-snap-type: none;
+    line-height: 1.85;
+    /* Misma “banda” vertical que entre hospedajes/regalos y ¡TE ESPERAMOS! (padding 24 + margin 36) */
+    --spa-band-before-final: 60px;
+}
+
+body.spa-invite .container {
+    padding-top: 28px;
+    padding-bottom: 48px;
+}
+
+body.spa-invite .page,
+body.spa-invite .page-1,
+body.spa-invite .first-screen {
+    min-height: 0 !important;
+    display: block;
+}
+
+body.spa-invite .section.hero {
+    min-height: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+body.spa-invite .section.hero:not(.header-parents) {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body.spa-invite .top-icon {
+    margin: 6px auto 18px;
+    width: 56px;
+}
+
+body.spa-invite h1.names {
+    margin: 10px 0 8px;
+}
+
+body.spa-invite .text-caps {
+    margin-bottom: calc(var(--space) * 0.65);
+    line-height: 1.75;
+}
+
+body.spa-invite .text-caps.text-smaller {
+    line-height: 1.72;
+}
+
+body.spa-invite .main-date {
+    margin-bottom: calc(var(--space) * 0.65);
+}
+
+body.spa-invite .divider {
+    margin: 0 auto calc(var(--space) * 0.65);
+}
+
+body.spa-invite .first-screen .divider.divider--no-line {
+    margin-bottom: calc(var(--space) * 0.55);
+}
+
+body.spa-invite .section.details > p:first-of-type + .divider.divider--balanced {
+    margin-top: calc(var(--space) * 0.5);
+    margin-bottom: calc(var(--space) * 0.5);
+}
+
+body.spa-invite .page-2,
+body.spa-invite .maps-confirm-block--spa,
+body.spa-invite .locations-wrapper--spa {
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+body.spa-invite .page-2 {
+    width: auto;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 48px;
+}
+
+body.spa-invite .maps-confirm-block--spa {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 16px 0 8px;
+    box-sizing: border-box;
+}
+
+body.spa-invite .maps-confirm-block--spa .btn-confirmar {
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+body.spa-invite .maps-confirm-block--spa .confirm-subtitle {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+body.spa-invite .locations-wrapper--spa {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 8px 0 24px;
+}
+
+body.spa-invite .page-2-screen {
+    padding-top: 0;
+    padding-bottom: 16px;
+}
+
+body.spa-invite .section.maps {
+    padding-top: 0;
+}
+
+body.spa-invite .location-card--spa,
+body.spa-invite .extra-block--spa {
+    cursor: default;
+    text-decoration: none;
+    color: inherit;
+}
+
+body.spa-invite .location-card--spa .btn-pill,
+body.spa-invite .extra-block--spa .btn-pill {
+    cursor: pointer;
+}
+
+body.spa-invite button.btn-pill {
+    font-family: inherit;
+    border: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+body.spa-invite .final-msg {
+    margin-top: 36px;
+}
+
+/* Hospedajes + regalos: dos columnas, misma altura de fila → botones alineados abajo */
+body.spa-invite .spa-extras-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 14px;
+    width: 100%;
+    max-width: 100%;
+    align-items: stretch;
+    box-sizing: border-box;
+    /* gap de .page-2-grid (28px) + este margen = misma banda que bajo el bloque (60px) */
+    margin-top: calc(var(--spa-band-before-final) - 28px);
+}
+
+body.spa-invite .spa-extras-pair .extra-block--spa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 200px;
+    min-width: 0;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.spa-invite .spa-extras-pair .img-frame-mini {
+    width: 100%;
+    max-width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-shrink: 0;
+}
+
+body.spa-invite .spa-extras-pair .btn-pill {
+    max-width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+    min-width: 0;
+    margin-top: auto;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Anula margen del styles.css que corría la columna REGALOS */
+body.spa-invite .spa-extras-pair .extra-block--regalo {
+    margin-top: 0;
+}
+
+/* Gana a .page-2-grid #btn-hospedaje { margin-top: 16px } del styles.css */
+body.spa-invite .spa-extras-pair #btn-hospedaje.btn-pill {
+    margin-top: auto;
+}
+
+/* Hints laterales: chevron-double-down, scroll al tocar */
+.spa-scroll-hints {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+body.spa-at-bottom .spa-scroll-hints {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.spa-scroll-hint {
+    position: fixed;
+    top: auto;
+    bottom: max(12px, calc(10px + env(safe-area-inset-bottom, 0px)));
+    transform: none;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
+    margin: 0;
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    opacity: 0.55;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.spa-scroll-hint:hover {
+    opacity: 0.9;
+}
+
+.spa-scroll-hint:active {
+    transform: scale(0.96);
+}
+
+.spa-scroll-hint .bi {
+    font-size: 22px;
+    animation: spa-hint-bob 2.2s ease-in-out infinite;
+}
+
+.spa-scroll-hint--left {
+    left: max(6px, env(safe-area-inset-left, 0px));
+}
+
+.spa-scroll-hint--right {
+    right: max(6px, env(safe-area-inset-right, 0px));
+}
+
+@keyframes spa-hint-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
+@media (max-width: 767px) {
+    body.spa-invite .container {
+        padding-top: 16px;
+        padding-bottom: 40px;
+    }
+
+    body.spa-invite .top-icon {
+        width: 40px;
+        margin: 4px auto 14px;
+    }
+
+    body.spa-invite h1.names {
+        margin: 6px 0 4px;
+    }
+
+    body.spa-invite .section.hero:not(.header-parents) {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    body.spa-invite .text-caps {
+        line-height: 1.68;
+    }
+
+    body.spa-invite .text-caps.text-smaller {
+        line-height: 1.65;
+    }
+
+    body.spa-invite .page-2 {
+        padding-bottom: 40px;
+    }
+
+    body.spa-invite .spa-scroll-hint .bi {
+        font-size: 19px;
+    }
+
+    body.spa-invite .spa-extras-pair {
+        margin-top: calc(var(--spa-band-before-final) - 24px);
+    }
+}
+
+@media (min-width: 768px) {
+    body.spa-invite .intro-block .top-icon {
+        margin: 6px auto 18px;
+    }
+
+    body.spa-invite .intro-block {
+        line-height: 1.78;
+    }
+
+    body.spa-invite .intro-block .text-caps {
+        line-height: 1.75;
+    }
+
+    /* Ocupar el ancho completo de la grilla de ubicaciones */
+    body.spa-invite .page-2-grid .spa-extras-pair {
+        grid-column: 1 / -1;
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 20px 32px;
+    }
+
+    body.spa-invite .spa-extras-pair .extra-block--spa {
+        max-width: 280px;
+    }
+}
+
+/* ---- Variantes SPA: padres + gyv (solo reglas añadidas) ---- */
+
+@media (max-width: 767px) {
+    body.spa-invite.spa-invite--padres .page-1:has(.header-parents),
+    body.spa-invite.spa-invite--padres .first-screen:has(.header-parents) {
+        min-height: 0 !important;
+        height: auto !important;
+    }
+}
+
+body.spa-invite.spa-invite--padres .section.hero.header-parents {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body.spa-invite.spa-invite--padres .first-screen:has(.header-parents) {
+    padding-top: 12px;
+    padding-bottom: 0;
+}
+
+/* inv-gyv-spa: solo hospedajes, una columna centrada */
+body.spa-invite .spa-extras-pair--single {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.spa-invite .spa-extras-pair--single .extra-block--spa {
+    max-width: 220px;
+}
+
+@media (min-width: 768px) {
+    body.spa-invite .page-2-grid .spa-extras-pair--single {
+        grid-column: 1 / -1;
+        max-width: 320px;
+    }
+
+    body.spa-invite .spa-extras-pair--single .extra-block--spa {
+        max-width: 280px;
+    }
+}
